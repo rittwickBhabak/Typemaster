@@ -1,0 +1,291 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(136, 231, 231);
+    box-sizing: border-box;
+    min-width: 1343px;
+}
+
+/* #userBtn{
+    float: right;
+} */
+
+.container {
+    width: 90%;
+    margin: 10px auto;
+    /* border: 1px solid black; */
+    height: 80vh;
+    border-radius: 0.5rem;
+    position: relative;
+}
+
+.info {
+    width: 80%;
+    margin: auto;
+    /* border: 1px solid black; */
+}
+
+.container ul li {
+    display: inline-block;
+    padding: 10px 50px;
+    font-size: 20px;
+}
+
+.container ul {
+    display: inline-block;
+}
+
+.text {
+    width: 100%;
+    background-color: white;
+    height: 100px;
+    border-radius: 0.6rem;
+    /* border: 1px dashed red; */
+}
+
+#exerciseText {
+    margin: auto;
+}
+
+.center {
+    font-size: 30px;
+    /* color: rgb(211, 211, 211); */
+}
+
+/* .textfield{
+    width: 100px;
+    height: 100px;
+    margin: 1px;
+} */
+
+input[type=text] {
+    font-size: 40px;
+    width: 100%;
+    height: 100%;
+    padding: 12px 20px;
+    margin: auto;
+    box-sizing: border-box;
+    border: 1px solid white;
+    border-radius: 0.6rem;
+    text-align: center;
+    letter-spacing: 1px;
+    font-family: cursive;
+}
+
+input[type=text]:focus {
+    outline: none;
+}
+
+.pracdiv {
+    /* border: 1px solid red; */
+    background-color: white;
+    width: 100%;
+    height: 100px;
+    margin: 10px auto;
+    border-radius: 0.5rem;
+    text-align: center;
+    font-size: 40px;
+    font-family: cursive;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.styletext {
+    font-family: cursive;
+    letter-spacing: 1px;
+    color: rgb(46, 46, 46);
+}
+
+.active-success {
+    background-color: rgb(14, 182, 14);
+    color: white;
+    border-radius: 0.5rem;
+}
+
+.active-danger {
+    background-color: rgb(250, 75, 75);
+    border-radius: 0.5rem;
+    color: white;
+}
+
+.success {
+    color: rgb(54, 216, 54);
+}
+
+.msgdiv {
+    width: 75%;
+    /* border: 1px solid black; */
+    margin: 70px auto;
+    text-align: center;
+}
+
+#next-btn {
+    padding: 10px;
+    background-color: green;
+    color: white;
+    text-align: center;
+    font-family: cursive;
+    font-size: 30px;
+    border-radius: 0.5rem;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.errorMsg {
+    padding: 10px;
+    background-color: rgb(255, 21, 21);
+    color: white;
+    text-align: center;
+    font-family: cursive;
+    font-size: 30px;
+    border-radius: 0.5rem;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.msg {
+    width: 90%;
+    float: left;
+}
+
+.dismissible-btn {
+    float: right;
+    /* width: 10%; */
+    padding-top: 5px;
+    cursor: pointer;
+}
+
+#restart {
+    cursor: pointer;
+}
+
+#arrow {
+    margin-top: 10px;
+    margin-left: 10px;
+    /* border: 1px solid black; */
+}
+
+#parc {
+    cursor: auto;
+}
+
+/* Navbar container */
+
+/* .navbar {
+    border: 1px solid black; 
+    width: 75%;
+    margin: 10px auto;
+     font-size: 30px; *
+    font-size: 20px;
+    border-radius: 0.5rem;
+    background-color: rgb(5, 151, 151);
+    box-shadow: 1px 1px 1px gray, -1px -1px 1px gray;
+} */
+
+/* .navbar ul {
+    display: inline-block;
+}
+
+.navbar ul li {
+    display: inline-block;
+    padding: 5px 50px;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar ul li a:hover {
+    color: rgb(2, 2, 42);
+} */
+
+.navbar {
+    overflow: hidden;
+    width: 75%;
+    margin: 10px auto;
+    font-size: 20px;
+    font-size: 20px;
+    border-radius: 0.5rem;
+    background-color: rgb(5, 151, 151);
+    box-shadow: 1px 1px 1px gray, -1px -1px 1px gray
+}
+
+/* Links inside the navbar */
+
+.navbar a {
+    float: left;
+    /* font-size: 16px; */
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* The dropdown container */
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+/* Dropdown button */
+
+.dropdown .dropbtn {
+    font-size: 20px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    /* Important for vertical align on mobile phones */
+    margin: 0;
+    /* Important for vertical align on mobile phones */
+}
+
+/* Add a red background color to navbar links on hover */
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+    background-color:  rgb(2, 2, 42);
+}
+
+/* Dropdown content (hidden by default) */
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}

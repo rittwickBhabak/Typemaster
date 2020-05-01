@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typemaster | Sign Up</title>
+    <link rel="stylesheet" href="signup.css">
+
+</head>
+
+<body>
+    <div id="container-left" class='container'>
+        <h1>Create an account</h1>
+        <p id='alertErrorMsg' style='display: none;'>Please enter your detials properly</p>
+        <form action="/createuser.html" method="POST">
+            <input type="text" name='firstname' id='firstname' placeholder="First Name" spellcheck="false"
+                autocomplete="off"><br>
+            <small id="nameErrormsg" style='display: none;'>First name can not be blank</small>
+            <input type="text" name="surname" id="surname" placeholder="Surname" spellcheck="false"
+                autocomplete="off"><br>
+            <small id="surnameErrormsg" style='display: none;'>Surname name can not be blank</small>
+            <input type="text" name="email" id="email" placeholder="Email address" spellcheck="false"><br>
+            <small id="emailErrormsg" style='display: none;'>Enter an valid email address</small>
+            <div>
+                <input type="password" name="password" id="password" placeholder="Password">
+                <svg class="bi bi-eye" width="3em" class="pass-toggle" id="show" height="3em" viewBox="0 0 16 16"
+                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 001.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0014.828 8a13.133 13.133 0 00-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 001.172 8z"
+                        clip-rule="evenodd"></path>
+                    <path fill-rule="evenodd"
+                        d="M8 5.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM4.5 8a3.5 3.5 0 117 0 3.5 3.5 0 01-7 0z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <svg class="bi bi-eye-slash" width="3em" class='pass-toggle' id='hide' style="display: none;"
+                    height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 00-2.79.588l.77.771A5.944 5.944 0 018 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0114.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z">
+                    </path>
+                    <path
+                        d="M11.297 9.176a3.5 3.5 0 00-4.474-4.474l.823.823a2.5 2.5 0 012.829 2.829l.822.822zm-2.943 1.299l.822.822a3.5 3.5 0 01-4.474-4.474l.823.823a2.5 2.5 0 002.829 2.829z">
+                    </path>
+                    <path
+                        d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 001.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 018 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709z">
+                    </path>
+                    <path fill-rule="evenodd" d="M13.646 14.354l-12-12 .708-.708 12 12-.708.708z" clip-rule="evenodd">
+                    </path>
+                </svg>
+            </div>
+            <small id="passwordErrormsg" style='display: none;'>Password must contain one capital letter, one small
+                letter, one number and should be at least 8 character long</small>
+            <input type="password" name="confirmpassword" id="confirmpassword" placeholder="Confirm Password"><br>
+            <small id="confirmpasswordErrormsg" style='display: none;'>password does not match</small>
+            <input type="submit" value="Sign Up" id='sign-up-btn'>
+        </form>
+    </div>
+    <!--Show-->
+    <!-- <svg class="bi bi-eye" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+            d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 001.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0014.828 8a13.133 13.133 0 00-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 001.172 8z"
+            clip-rule="evenodd"></path>
+        <path fill-rule="evenodd" d="M8 5.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM4.5 8a3.5 3.5 0 117 0 3.5 3.5 0 01-7 0z"
+            clip-rule="evenodd"></path>
+    </svg> -->
+    <!-- Hide -->
+    <!-- <svg class="bi bi-eye-slash" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+            d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 00-2.79.588l.77.771A5.944 5.944 0 018 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0114.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z">
+        </path>
+        <path
+            d="M11.297 9.176a3.5 3.5 0 00-4.474-4.474l.823.823a2.5 2.5 0 012.829 2.829l.822.822zm-2.943 1.299l.822.822a3.5 3.5 0 01-4.474-4.474l.823.823a2.5 2.5 0 002.829 2.829z">
+        </path>
+        <path
+            d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 001.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 018 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709z">
+        </path>
+        <path fill-rule="evenodd" d="M13.646 14.354l-12-12 .708-.708 12 12-.708.708z" clip-rule="evenodd"></path>
+    </svg> -->
+    <div id="container-right" class='container'>
+        <h1>OR</h1><br>
+        <div id="google-integration">
+            <div id="google-logo"></div>
+            Continue with google
+        </div>
+    </div>
+
+
+    <script>
+
+        var id;
+        id = 'firstname'
+        id = "nameErrormsg"
+        id = "surname"
+        id = "surnameErrormsg"
+        id = "email"
+        id = "emailErrormsg"
+        id = "password"
+        id = "passwordErrormsg"
+        id = "confirmpassword"
+        id = "confirmpasswordErrormsg"
+        let firstOk = 0;
+        let firstBlured = 0;
+        let surOk = 0;
+        let surBlured = 0;
+        let passOk = 0;
+        let passBlured = 0;
+        let cfpassOk = 0;
+        let cfpassBlured = 0;
+        let emailOk = 0;
+        let emailBlured = 0;
+
+        document.getElementById('firstname').addEventListener('keyup', () => {
+            let firstname = document.getElementById('firstname').value;
+            firstOk = firstNameValidator(firstname);
+            if (firstOk == true) {
+                document.getElementById('nameErrormsg').style.display = 'none';
+                document.getElementById('firstname').className = 'success'
+            }
+            else {
+                if (firstBlured == 1) {
+                    document.getElementById('nameErrormsg').style.display = 'block';
+                    document.getElementById('firstname').className = ''
+                }
+            }
+        })
+        document.getElementById('firstname').addEventListener('blur', () => {
+            let firstname = document.getElementById('firstname').value;
+            firstOk = firstNameValidator(firstname);
+            firstBlured = 1;
+            if (firstOk == true) {
+                document.getElementById('nameErrormsg').style.display = 'none';
+                document.getElementById('firstname').className = 'success';
+
+            }
+            else {
+                document.getElementById('nameErrormsg').style.display = 'block';
+                document.getElementById('firstname').className = '';
+            }
+        })
+        document.getElementById('surname').addEventListener('keyup', () => {
+            let surname = document.getElementById('surname').value;
+            surOk = surNameValidator(surname);
+            if (surOk == true) {
+                document.getElementById('surnameErrormsg').style.display = 'none'
+                document.getElementById('surname').className = 'success'
+            }
+            else {
+                if (surBlured == 1) {
+                    document.getElementById('surnameErrormsg').style.display = 'block'
+                    document.getElementById('surname').className = ''
+
+                }
+            }
+        })
+        document.getElementById('surname').addEventListener('blur', () => {
+            let surname = document.getElementById('surname').value;
+            surOk = surNameValidator(surname);
+            surBlured = 1;
+            if (surOk == true) {
+                document.getElementById('surnameErrormsg').style.display = 'none'
+                document.getElementById('surname').className = 'success'
+            }
+            else {
+                document.getElementById('surnameErrormsg').style.display = 'block'
+                document.getElementById('surname').className = ''
+            }
+        })
+        document.getElementById('email').addEventListener('keyup', () => {
+            let email = document.getElementById('email').value;
+            emailOk = emailValidator(email);
+            if (emailOk == true) {
+                document.getElementById('emailErrormsg').style.display = 'none';
+                document.getElementById('email').className = 'success';
+
+            }
+            else {
+                if (emailBlured == 1) {
+                    document.getElementById('emailErrormsg').style.display = 'block';
+                    document.getElementById('email').className = '';
+                }
+            }
+        })
+        document.getElementById('email').addEventListener('blur', () => {
+            let email = document.getElementById('email').value;
+            emailOk = emailValidator(email);
+            emailBlured == 1
+            if (emailOk == true) {
+
+                document.getElementById('emailErrormsg').style.display = 'none';
+                document.getElementById('email').className = 'success';
+            }
+            else {
+                document.getElementById('emailErrormsg').style.display = 'block';
+                document.getElementById('email').className = '';
+            }
+        })
+        document.getElementById('password').addEventListener('keyup', () => {
+            let password = document.getElementById('password').value;
+            passOk = passwordValidator(password);
+            if (passOk == true) {
+                document.getElementById('passwordErrormsg').style.display = 'none';
+            }
+            else {
+                if (passBlured == 1) {
+                    document.getElementById('passwordErrormsg').style.display = 'block';
+                }
+
+            }
+        })
+        document.getElementById('password').addEventListener('blur', () => {
+            let password = String(document.getElementById('password').value);
+            passOk = passwordValidator(password);
+            if (passOk == true) {
+                document.getElementById('passwordErrormsg').style.display = 'none';
+                passBlured == 1
+            }
+            else {
+                passBlured == 1
+                document.getElementById('passwordErrormsg').style.display = 'block';
+            }
+        })
+
+        document.getElementById('confirmpassword').addEventListener('keyup', () => {
+            let confirmpassword = document.getElementById('confirmpassword').value;
+            cfpassOk = (String(document.getElementById('password').value) === String(confirmpassword))
+            if (cfpassOk == true) {
+                document.getElementById('confirmpasswordErrormsg').style.display = 'none';
+            }
+            else {
+                document.getElementById('confirmpasswordErrormsg').style.display = 'block';
+            }
+        })
+
+        document.getElementById('sign-up-btn').addEventListener('click', (e) => {
+            let signUpAble = firstOk && surOk && emailOk && cfpassOk;
+            if (!signUpAble) {
+                e.preventDefault();
+                document.getElementById('alertErrorMsg').style.display = 'block';
+            }
+        })
+
+
+
+
+
+
+
+
+
+
+        function passwordValidator(password) {
+            let regCap = /[A-Z]/
+            let regSmall = /[a-z]/
+            let regNum = /[0-9]/
+            let length = password.length >= 8;
+            // let regSpecChar = /[ !”#$%&’()*+,-./:;<=>?@[]^_`{|}~]/
+            // let regBackslash = /\\/
+            let passwordPass = Boolean(password.match(regCap) && password.match(regSmall) && password.match(regNum) && length);
+            return passwordPass
+        }
+        function emailValidator(email) {
+            let regx = /\w+\@\w+\.\w+/
+
+            return Boolean(email.match(regx))
+        }
+        function firstNameValidator(name) {
+            return name.replace(/\s/g, '').length > 0
+        }
+        function surNameValidator(name) {
+            return name.replace(/\s/g, '').length > 0
+        }
+
+        document.getElementById('hide').addEventListener('click', () => {
+            document.getElementById('hide').style.display = 'none';
+            document.getElementById('show').style.display = 'block';
+            document.getElementById('password').type = 'password';
+        })
+        document.getElementById('show').addEventListener('click', () => {
+            document.getElementById('hide').style.display = 'block';
+            document.getElementById('show').style.display = 'none';
+            document.getElementById('password').type = 'text';
+        })
+    </script>
+</body>
+
+</html>
