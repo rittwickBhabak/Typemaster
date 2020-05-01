@@ -9,15 +9,18 @@
     <style>
         .pracdiv{
             height: auto;
-            font-size: 1.6rem;
-            text-align: justify;
-            padding: 20px;
+            text-align: left;
+            padding-left: 20px;
+            padding-right: 20px;
+            /* padding-top: 0; */
+            overflow-wrap: break-word;
+            font-size: 1.5rem;
         }
     </style>
 </head>
 
 <body>
-   
+
     <div class="navbar">
         <a href="/">Home</a>
         <a href="/learn.html" target="_blank">Learn Typing</a>
@@ -25,14 +28,14 @@
         <a href="/signup.html">Sign Up</a>
         <a href="/login.html">Log In</a>
         <div class="dropdown" id="droparea">
-          <button class="dropbtn">Username
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a href="/setlimit.html" target="_blank">Customize Levels</a>
-            <a href="/weakkeys.html" target="_blank">Weak Keys</a>
-            <a href="/yourResults.html" target="_blank">Results</a>
-          </div>
+            <button class="dropbtn">Username
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/setlimit.html" target="_blank">Customize Levels</a>
+                <a href="/weakkeys.html" target="_blank">Weak Keys</a>
+                <a href="/yourResults.html" target="_blank">Results</a>
+            </div>
         </div>
     </div>
 
@@ -59,14 +62,13 @@
         </div>
 
         <div class="pracdiv">
-            In parts of Alaska, it's illegal to feed alcohol to a moose. You're subject to fines and/or imprisonment for making "ugly faces" at dogs in Oklahoma. In Utah, birds have the right of way on all highways. Christmas was once illegal in England. In Turkey, in the sixteenth and seventeenth centuries, anyone caught drinking coffee was put to death. It is illegal to hunt camels in the state of Arizona.
-            <pre id='exText'></pre>
+            <p id='exText'></p>
 
         </div>
         <div class="text">
             <input type="text" class='textfiled' id='parc' placeholder="Type the text here" spellcheck="false">
         </div>
-        <!-- <div class="msgdiv">
+        <div class="msgdiv">
 
             <div id="speedmsg" class='errorMsg'>
                 <div class="msg">
@@ -91,24 +93,183 @@
             </div>
 
 
-        </div> -->
+        </div>
     </div>
     <script src="jQuery.js"></script>
     <script>
-        
-        // function getTxt(){
-        //     document.getElementById('startButton').click();
-        //     var spans = document.getElementsByClassName('mainTxt')[0].children;
-        //     var text = '';
-        //     for(span of spans){
-        //         text += span.textContent;
-        //     }
-        //     window.location.reload();
-        //     return text;
-        // }
-        // let text = getTxt();
-        // copy(text);
-        
+        //Bring this wordlist through a get request
+        let exercise = 'In the Middle Ages, the highest court in France ordered the execution of a cow for injuring a human. A girl, in the Vacococha tribe of Peru, to prepare her for marriage at the age of 12, is placed in a basket in the hut of her prospective in-laws and must remain suspended over an open fire night and day for 3 months. The Spanish Inquisition once condemned the entire Netherlands to death for heresy.';
+        let wordList = String(exercise).split(' ');
+
+        //Prepare the text to show on the screen and the text to check every now and then
+        let textShow = '<p class="styletext" id="spanList-pre">';
+        let textCheck = '';
+        for (let i = 0; i < wordList.length; i++) {
+            textShow += `<span>${wordList[i]}</span>`;
+            textCheck += wordList[i];
+            if (i + 1 < wordList.length && (wordList[i + 1] != ',' && wordList[i + 1] != '.')) {
+                textShow += `<span> </span>`
+                textCheck += ' ';
+            }
+        }
+        textShow += `</p>`;
+        // console.log(textShow)
+        document.getElementById('exText').innerHTML = textShow;
+
+        //Dismiss the error messsage. Do it through jQuery
+        document.getElementById('close-btn').addEventListener('click', () => {
+            // document.getElementsByClassName('errorMsg')[0].style.display = 'none';
+            // document.getElementsByClassName('errorMsg')[1].style.display = 'none';
+            $('.errorMsg').fadeOut(1000);
+        });
+
+    </script>
+    <script>
+        //Wordlist contains the words
+        //textShow contains the giver line html
+        //input id='parc' contains the userinput
+        //textCheck contains the given line
+
+        let spanList = document.getElementById('spanList-pre').children;
+        let wordsX60 = textCheck.length / 5 * 60;
+        let error = 0;
+        let prevLen = 0;
+        let prevState = 1;
+        let startTime;
+        let started = 0;
+        let endTime;
+        let ended = 0;
+        let timeTaken;
+        let wpm;
+        let errorObj = { "a": 0, "b": 0, "c": 0, "d": 0, "e": 0, "f": 0, "g": 0, "h": 0, "i": 0, "j": 0, "k": 0, "l": 0, "m": 0, "n": 0, "o": 0, "p": 0, "q": 0, "r": 0, "s": 0, "t": 0, "u": 0, "v": 0, "w": 0, "x": 0, "y": 0, "z": 0, "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0, "~": 0, "`": 0, "!": 0, "@": 0, "#": 0, "$": 0, "%": 0, "^": 0, "&": 0, "*": 0, "(": 0, ")": 0, "_": 0, "+": 0, "-": 0, "=": 0, "|": 0, "}": 0, "\\": 0, "]": 0, "[": 0, ";": 0, "\'": 0, '"': 0, ":": 0, "<": 0, ">": 0, "?": 0, "/": 0, ".": 0, ",": 0, " ": 0, "A": 0, "B": 0, "C": 0, "D": 0, "E": 0, "F": 0, "G": 0, "H": 0, "I": 0, "J": 0, "K": 0, "L": 0, "M": 0, "N": 0, "O": 0, "P": 0, "Q": 0, "R": 0, "S": 0, "T": 0, "U": 0, "V": 0, "W": 0, "X": 0, "Y": 0, "Z": 0 }
+        $((document) => {
+            $('#parc').focus()
+        })
+        document.getElementById('parc').addEventListener('keyup', function (e) {
+            if (e.getModifierState('CapsLock')) {
+                document.getElementById('parc').disabled = true;
+                restart();
+            }
+            if (started == 0) {
+                startTime = Date.now();
+                started = 1;
+                // console.log('started');
+            }
+            let x = e.target.value.split(' ');
+            let inputList = [];
+            for (let i = 0; i < x.length; i++) {
+                inputList.push(x[i]);
+                if (i + 1 != x.length) {
+                    inputList.push(' ');
+                }
+            }
+            // console.clear();
+            // console.log(inputList);
+            let cst = -1, ps = 0;
+            for (i = 0; i < spanList.length; i++) {
+                if (inputList[i] == spanList[i].textContent) {
+                    cst++;
+                    ps = cst + 1;
+                }
+                else {
+                    break;
+                }
+            }
+            // console.log(cst, ps);
+            for (let i = 0; i <= cst; i++) {
+                spanList[i].className = 'success'
+            }
+            let wordTillNow = inputList[ps];
+            if (wordTillNow != undefined && spanList[ps] != undefined) {
+
+                let wordLengthTillNow = wordTillNow.length;
+                // console.log(wordTillNow, spanList[ps].textContent.slice(0, wordLengthTillNow))
+                if (wordTillNow == spanList[ps].textContent.slice(0, wordLengthTillNow)) {
+                    if (inputList[ps + 1] != undefined) {
+                        spanList[ps].className = 'active-danger'
+                    }
+                    else {
+                        spanList[ps].className = 'active-success'
+                    }
+                }
+                else if (wordTillNow != spanList[ps].textContent.slice(0, wordLengthTillNow)) {
+                    spanList[ps].className = 'active-danger'
+                }
+            }
+            for (let i = ps + 1; i < spanList.length; i++) {
+                spanList[i].className = '';
+
+            }
+
+            let inputLine = e.target.value;
+            let currentLen = inputLine.length;
+            let piece = textCheck.slice(0, currentLen);
+            // console.log(inputLine, piece);
+            if (piece != inputLine && prevState == 1) {
+                prevState = 0;
+                error++;
+                let errorChar = piece[piece.length - 1];
+                errorObj[errorChar]++;
+                console.log(errorChar)
+                // console.log('inside if')
+            }
+            else if (piece != inputLine && prevState == 0) {
+                prevState = 0;
+                if (currentLen > prevLen) {
+                    error++;
+                }
+            }
+            else {
+                prevState = 1;
+            }
+            prevLen = currentLen;
+            document.getElementById('error').textContent = error;   //Error detected here done
+
+            let correctChars = 0;
+            for (let i = 0; i < inputLine.length; i++) {
+                if (inputLine[i] == textCheck[i]) {
+                    correctChars++;
+                }
+            }
+            let correctWordsX60 = correctChars / 5 * 60;
+            let currentWPM = parseInt(correctWordsX60 / ((Date.now() - startTime) / 1000));
+            // console.log(currentWPM);
+            document.getElementById('wpm').textContent = currentWPM;
+
+            if (textCheck == inputLine) {
+                ended = 1;
+                endTime = Date.now();
+                timeTaken = (endTime - startTime) / 1000;
+                wpm = parseInt(wordsX60 / timeTaken);
+                console.log(errorObj)
+                document.getElementById('parc').disabled = 'true';
+
+            }
+        })
+
+        $('#restart').click(restart);
+
+        function restart() {
+            error = 0;
+            prevLen = 0;
+            prevState = 1;
+            started = 0;
+            ended = 0;
+            document.getElementById('parc').value = '';
+            $('#parc').focus()
+            document.getElementById('parc').disabled = false;
+            // document.getElementById('parc').setAttribute('disabled','false')
+            // console.log("present value", document.getElementById('parc').value);
+            document.getElementById('wpm').textContent = "";
+            document.getElementById('error').textContent = "";
+            $("#parc").focus();
+            let spanList = document.getElementById('spanList-pre').children;
+
+            for (span of spanList) {
+                span.className = '';
+            }
+            inputLine = '';
+        }
     </script>
 </body>
 
