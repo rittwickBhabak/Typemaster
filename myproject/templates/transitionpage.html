@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block activetutor %} active {% endblock %}
+{% block body %}
+<div class="text-center container my-5 col-md-6">
+
+    <div class="card">
+        <div class="card-header bg-{{clas}} text-white">
+            {{msg}}
+        </div>
+    <div class="card-body">
+        <h5 class="card-title text-{{clas}}">{{status}}</h5>
+        <p class="card-text">Exercise: {{exerciseId}}</p>
+        {% if clas=='danger' %}
+        <a href="{{url_for('exercise')}}" class="btn btn-{{clas}}">Try Again</a>
+        {% else %}
+        <a href="{{url_for('exercise')}}" class="btn btn-{{clas}}">Next Exercise</a>
+        {% endif %}
+    </div>
+</div>
+
+</div>
+{% endblock %}

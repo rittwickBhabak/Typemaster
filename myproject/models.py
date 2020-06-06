@@ -37,10 +37,14 @@ class Exercise(db.Model):
     __tablename__ = 'exercises'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer)
+    line_id = db.Column(db.Integer)
     speed = db.Column(db.Float)
     error = db.Column(db.Integer)
-    def __init__(self,text):
-        self.text = text 
+    def __init__(self,user_id,line_id,speed,error):
+        self.user_id = user_id
+        self.line_id = line_id
+        self.speed = speed
+        self.error = error
 
 
 PracticeLine = [

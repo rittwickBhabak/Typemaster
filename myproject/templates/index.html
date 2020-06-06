@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block activetutor %} active {% endblock %}
+{% block body %}
+{% for tag, msg in get_flashed_messages(with_categories=True) %}
+<div class="alert alert-{{tag}}" role="alert">
+    {{msg}}
+</div>
+{% endfor %}
+{% if current_user.is_authenticated %}
+{{current_user.id}}<br>
+{{current_user.name}}<br>
+{{current_user.email}}<br>
+{% endif %}
+
+{% endblock %}
