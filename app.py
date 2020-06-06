@@ -1,8 +1,9 @@
 # app.py
 from myproject import app, db
+import random
 from flask import Flask, render_template, redirect, flash, url_for, request, abort, session
 from flask_login import login_user, login_required, logout_user
-from myproject.models import User, PracticeLine, Exercise
+from myproject.models import User, PracticeLine, Exercise, TestLines, TestResults
 from myproject.forms import LoginForm, RegistrationForm
 
 @app.route('/')
@@ -28,6 +29,23 @@ def dashboard():
         futureText.append([i+1,PracticeLine[i],'--','--'])
     return render_template('dashboard.html', passedText=passedText, futureText=futureText)
     
+@app.route('/testresult', methods=['POST'])
+def testresult():
+    if request.method=='POST' and session['current_user_id_typemaster'] is not None:
+        user_id = session['current_user_id_typemaster']
+        speed = request.form['wpm']
+        accuracy = request.form['accuracy']
+        db.session.add(TestResults(user_id,speed, accuracy))
+        db.session.commit()
+
+    
+    msg = f"Your current speed is {speed} and accuracy is {accuracy}. You can increase your speed and accuracy amazingly using our app. Create your account and start typing. It's free."
+    return render_template('testresult.html', msg=msg)
+
+@app.route('/test')
+def typetest():
+    text = TestLines[random.randint(0,len(TestLines))]
+    return render_template('typetest.html', practiceText = text)
 
 @app.route('/exercise', methods=['GET', 'POST'])
 @login_required

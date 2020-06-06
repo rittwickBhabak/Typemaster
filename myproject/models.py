@@ -17,6 +17,7 @@ class User(db.Model,UserMixin):
     password_hash = db.Column(db.String(128))
     avgSpeed = db.Column(db.Integer)
     level = db.Column(db.Integer)
+    weakKeys = db.Column(db.String)
     def __init__(self,name,email,username, password):
         self.name = name
         self.email = email
@@ -40,12 +41,22 @@ class Exercise(db.Model):
     line_id = db.Column(db.Integer)
     speed = db.Column(db.Float)
     error = db.Column(db.Integer)
+
     def __init__(self,user_id,line_id,speed,error):
         self.user_id = user_id
         self.line_id = line_id
         self.speed = speed
         self.error = error
 
+class TestResults(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer)
+    speed = db.Column(db.Float)
+    accuracy = db.Column(db.Float)
+    def __init__(self,user_id,speed,accuracy):
+        self.user_id = user_id
+        self.speed = speed
+        self.accuracy = accuracy
 
 PracticeLine = [
     "jkkjk kjkkj jkjjk kkjkj jjkjk jkjkk kjkjj jkjkj kkjkj jjkjk",

@@ -2,12 +2,20 @@ inputfield = document.getElementById('inputfield');
 giventext = document.getElementById('giventext').textContent;
 myForm = document.getElementById('myForm');
 
+spanText = ``;
+for(let  i = 0; i<giventext.length;i++){
+    spanText += `<span class="givenLetter">${giventext[i]}</span>`
+}
+document.getElementById('giventext').innerHTML = spanText;
 let error = 0;
 let previousText = '';
 let starttime = '';
 let started = 0;
 let updateWpm = '';
+let totalKeyPress = 0;
+
 inputfield.addEventListener('keyup',(event)=>{
+    totalKeyPress++;
     let currentText = inputfield.value;
     if(started==0){
         started = 1;
@@ -47,8 +55,36 @@ inputfield.addEventListener('keyup',(event)=>{
     if((giventext.slice(0,inputfield.value.length)!=inputfield.value) && (previousText.length < currentText.length)){
             error = error + 1;
     }
+
+    let accuracy = parseInt((totalKeyPress-error)/totalKeyPress*100);
+    let accuracySpan = document.getElementById('accuracy');
+    if(accuracySpan!=null){
+        accuracySpan.textContent = accuracy+'%';
+    }
+    
+
+
+    let spanList = document.getElementsByClassName("givenLetter")
+    let errorFoundAt = -1;
+    for(let i=0;i<inputfield.value.length;i++){
+        if(spanList[i].textContent==inputfield.value[i] && errorFoundAt==-1){
+            spanList[i].className = "givenLetter text-success"
+        }
+        if(spanList[i].textContent!=inputfield.value[i] && errorFoundAt==-1){
+            errorFoundAt = i;
+            spanList[i].className = "givenLetter bg-danger text-white rounded";
+        }
+        if(giventext.slice(0,inputfield.value.length)==inputfield.value && inputfield.value.length<giventext.length){
+            spanList[inputfield.value.length].className = "givenLetter bg-success text-white rounded"
+        }
+    }
+
+
     previousText = currentText;
-    document.getElementById('typo').textContent = error;
+    let typoSpan = document.getElementById('typo')
+    if(typoSpan!=null){
+        document.getElementById('typo').textContent = error;
+    }
       
 })
 
@@ -75,10 +111,20 @@ function restart(){
     started = 0;
     updateWpm = '';
     document.getElementById('wpm').textContent = '';
-    document.getElementById('typo').textContent = '';
+    let typoSpan = document.getElementById('typo');
+    let accuracySpan = document.getElementById('accuracy');
+    if(typoSpan!=null){
+        document.getElementById('typo').textContent = '';
+    }
+    if(accuracySpan!=null){
+        document.getElementById('accuracy').textContent = '';
+    }
     document.getElementById('inputfield').value = '';
-
-    
+    let letterList = document.getElementsByClassName("givenLetter")
+    for(let i=0;i<letterList.length;i++){
+        letterList[i].className = "givenLetter";
+        console.log(letterList[i].textContent)
+    }
 }
 
 document.getElementById('btn-restart').addEventListener('click',restart);
