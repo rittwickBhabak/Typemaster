@@ -43,9 +43,19 @@ def dashboard():
         futureText.append([i+1,PracticeLine[i],'--','--'])
     return render_template('dashboard.html', passedText=passedText, futureText=futureText)
     
+@app.route('/analytics')
+@login_required
+def analytics():
+    user_id = session['current_user_id_typemaster']
+    testresults = TestResults.query.filter_by(user_id=user_id)
+    result = []
+    for ind,r in enumerate(testresults):
+        result.append([ind+1,int(r.speed)*2,int(r.accuracy)*2])
+    return render_template('analytics.html', result = result)
+
 @app.route('/testresult', methods=['POST'])
 def testresult():
-    if request.method=='POST' and session['current_user_id_typemaster'] is not None:
+    if request.method=='POST' and session.get('current_user_id_typemaster',None) is not None:
         user_id = session['current_user_id_typemaster']
         speed = request.form['wpm']
         weakkeys = request.form['weakkeys']
@@ -73,6 +83,10 @@ def testresult():
 def typetest():
     text = TestLines[random.randint(0,len(TestLines)-1)]
     return render_template('typetest.html', practiceText = text)
+
+@app.route('/editprofile')
+def editprofile():
+    return render_template('editprofile.html')
 
 @app.route('/exercise', methods=['GET', 'POST'])
 @login_required

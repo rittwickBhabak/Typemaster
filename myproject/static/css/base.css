@@ -1,3 +1,10 @@
 /* body{
     min-width: 1050px;
 } */
+
+.point{
+    width:2px;
+    height: 2px;
+    background-color: red;
+    position: absolute;
+}

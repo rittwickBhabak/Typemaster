@@ -1,0 +1,15 @@
+{% extends "dashboardbase.html" %}
+{% block activeanalytics %} active {% endblock %}
+{% block dashboarditems %}
+
+<div class="container border my-4" style="width: 600px;height: 200px;position: relative;">
+    {% for r in result %}
+<div style="bottom:{{r[1]}}px;left:{{r[1]}}px;position: absolute;background-color:red;width:5px;height:5px;border-radius:50%;"></div>
+    {% endfor %}
+</div>
+<div class="container mt-3 text-center" style="width: 600px">
+    This is the graph of your speed vs accuracy accoding the typing tests you have appeared.
+</div>
+
+
+{% endblock %}
