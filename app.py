@@ -1,6 +1,7 @@
 # app.py
 from myproject import app, db
 import random
+import json
 from flask import Flask, render_template, redirect, flash, url_for, request, abort, session
 from flask_login import login_user, login_required, logout_user
 from myproject.models import User, PracticeLine, Exercise, TestLines, TestResults
@@ -11,6 +12,19 @@ def index():
     if session.get('current_user_id_typemaster', None) is not None:
         return redirect(url_for('exercise'))
     return render_template('index.html')
+
+@app.route('/weakkeys')
+@login_required
+def weakkeys():
+    user = User.query.get(session['current_user_id_typemaster'])
+    weakkeysObj = json.loads(user.weakKeys.replace("'",'"'))
+    obj = []
+    for key,value in weakkeysObj.items():
+        obj.append([chr(int(key)),value])
+    return render_template('weakkeys.html', weakKeys = obj)
+
+def update_weakkeys(user_id, update_list):
+    pass
 
 @app.route('/dashboard')
 @login_required
@@ -34,7 +48,17 @@ def testresult():
     if request.method=='POST' and session['current_user_id_typemaster'] is not None:
         user_id = session['current_user_id_typemaster']
         speed = request.form['wpm']
+        weakkeys = request.form['weakkeys']
         accuracy = request.form['accuracy']
+        update = json.loads(weakkeys)
+        user = User.query.filter_by(id = user_id).first()
+        print(user.weakKeys)
+        weakkeys = json.loads(user.weakKeys.replace("'",'"'))
+        for key,values in weakkeys.items():
+            weakkeys[key] += int(update[key])
+        user.weakKeys = str(weakkeys)
+        db.session.add(user)
+        db.session.commit()
         db.session.add(TestResults(user_id,speed, accuracy))
         db.session.commit()
     if request.method=='POST':

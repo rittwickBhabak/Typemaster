@@ -1,0 +1,28 @@
+{% extends "dashboardbase.html" %}
+{% block activeweakkeys %} active {% endblock %}
+{% block dashboarditems %}
+<!-- {{weakKeys}} -->
+<div class="container my-4 mydiv" id="practice-div">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Keys</th>
+                <th scope="col">Wrongly Pressed</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in weakKeys %}
+            <tr>
+                <td>{{r[0]}}</td>
+                <td>{{r[1]}}</td>
+                
+            </tr>
+            {% endfor %}
+            
+
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

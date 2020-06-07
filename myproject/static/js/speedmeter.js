@@ -1,7 +1,7 @@
 inputfield = document.getElementById('inputfield');
 giventext = document.getElementById('giventext').textContent;
 myForm = document.getElementById('myForm');
-
+let weakkeys = {"97": 0, "98": 0, "99": 0, "100": 0, "101": 0, "102": 0, "103": 0, "104": 0, "105": 0, "106": 0, "107": 0, "108": 0, "109": 0, "110": 0, "111": 0, "112": 0, "113": 0, "114": 0, "115": 0, "116": 0, "117": 0, "118": 0, "119": 0, "120": 0, "121": 0, "122": 0, "65": 0, "66": 0, "67": 0, "68": 0, "69": 0, "70": 0, "71": 0, "72": 0, "73": 0, "74": 0, "75": 0, "76": 0, "77": 0, "78": 0, "79": 0, "80": 0, "81": 0, "82": 0, "83": 0, "84": 0, "85": 0, "86": 0, "87": 0, "88": 0, "89": 0, "90": 0, "96": 0, "49": 0, "50": 0, "51": 0, "52": 0, "53": 0, "54": 0, "55": 0, "56": 0, "57": 0, "48": 0, "45": 0, "61": 0, "126": 0, "33": 0, "64": 0, "35": 0, "36": 0, "37": 0, "94": 0, "38": 0, "42": 0, "40": 0, "41": 0, "95": 0, "43": 0, "91": 0, "93": 0, "123": 0, "125": 0, "124": 0, "59": 0, "39": 0, "58": 0, "34": 0, "44": 0, "46": 0, "47": 0, "60": 0, "62": 0, "63": 0}
 spanText = ``;
 for(let  i = 0; i<giventext.length;i++){
     spanText += `<span class="givenLetter">${giventext[i]}</span>`
@@ -48,7 +48,15 @@ inputfield.addEventListener('keyup',(event)=>{
         wpm = words/speed*60;
         document.getElementById('wpminput').value =parseInt(wpm);
         document.getElementById('typoinput').value = error;
-        document.getElementById('accuracyinput').value = accuracy;
+        if(document.getElementById('accuracyinput')!=null){
+            document.getElementById('accuracyinput').value = accuracy;
+        }
+        weakstring = '{';
+        Object.keys(weakkeys).forEach((val)=>{
+            weakstring += `"${val}":${weakkeys[val]},`
+        })
+        weakstring = weakstring.slice(0,weakstring.length-1) + '}'
+        document.getElementById('weakkeys').value = weakstring
         console.log(accuracy);
         clearInterval(updateWpm);
         myForm.submit();
@@ -56,6 +64,16 @@ inputfield.addEventListener('keyup',(event)=>{
 
     if((giventext.slice(0,inputfield.value.length)!=inputfield.value) && (previousText.length < currentText.length)){
             error = error + 1;
+    }
+
+    // console.log(giventext.slice(0,previousText.length));
+    // console.log(previousText);
+    // console.log(giventext.slice(0,currentText.length));
+    // console.log(currentText);
+    if(giventext.slice(0,previousText.length)==previousText && giventext.slice(0,currentText.length)!=currentText){
+        let ch = giventext[currentText.length-1];
+        let asci = ch.charCodeAt()
+        weakkeys[asci]++;
     }
 
     accuracy = parseInt((totalKeyPress-error)/totalKeyPress*100);
