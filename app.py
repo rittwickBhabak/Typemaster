@@ -8,7 +8,7 @@ from myproject.forms import LoginForm, RegistrationForm
 
 @app.route('/')
 def index():
-    if session['current_user_id_typemaster'] is not None:
+    if session.get('current_user_id_typemaster', None) is not None:
         return redirect(url_for('exercise'))
     return render_template('index.html')
 
@@ -37,14 +37,17 @@ def testresult():
         accuracy = request.form['accuracy']
         db.session.add(TestResults(user_id,speed, accuracy))
         db.session.commit()
+    if request.method=='POST':
+        speed = request.form['wpm']
+        accuracy = request.form['accuracy']
 
     
-    msg = f"Your current speed is {speed} and accuracy is {accuracy}. You can increase your speed and accuracy amazingly using our app. Create your account and start typing. It's free."
+    msg = f"Your current speed is {speed} and accuracy is {accuracy}. You can increase your speed and accuracy amazingly using our app. Practice our lessons 10minutes daily and imporve your speed and accuracy. It's free."
     return render_template('testresult.html', msg=msg)
 
 @app.route('/test')
 def typetest():
-    text = TestLines[random.randint(0,len(TestLines))]
+    text = TestLines[random.randint(0,len(TestLines)-1)]
     return render_template('typetest.html', practiceText = text)
 
 @app.route('/exercise', methods=['GET', 'POST'])
@@ -166,6 +169,25 @@ def logout():
     session['current_user_id_typemaster'] = None
     flash('See you soon', 'success')
     return redirect(url_for('login'))
+
+@app.route('/dashboard/test-results')
+@login_required
+def testresults():
+    user_id = session['current_user_id_typemaster']
+    testresults = TestResults.query.filter_by(user_id=user_id)
+    result = []
+    for ind,r in enumerate(testresults):
+        result.append([ind+1,r.speed,r.accuracy])
+    return render_template('logtestresults.html', result = result)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return redirect(url_for('index'))
+@app.errorhandler(405)
+def method_not_allowed(e):
+    # note that we set the 404 status explicitly
+    return redirect(url_for('index'))
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block activeusername %} active {% endblock %}
+{% block body %}
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link {% block activepractice %} {% endblock %}" id="practice" href="{{url_for('dashboard')}}">Practice Results</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% block activetest %} {% endblock %}" id="test" href="{{url_for('testresults')}}">Test Results</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% block activeweakkeys %} {% endblock %}" id="weakkeys" href="{{url_for('testresults')}}">Weak Keys</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% block activeanalytics %} {% endblock %}" id="analytics" href="{{url_for('testresults')}}">Analytics</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% block activeeditprofile %} {% endblock %}" id="edit-profile" href="{{url_for('testresults')}}">Edit Profile</a>
+    </li>
+</ul>
+<div class="container my-4 mydiv" id="practice-div">
+    {% block dashboarditems %} {% endblock %}
+</div>
+
+
+{% endblock %}

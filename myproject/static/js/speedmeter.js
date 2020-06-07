@@ -13,7 +13,7 @@ let starttime = '';
 let started = 0;
 let updateWpm = '';
 let totalKeyPress = 0;
-
+let accuracy = '100%';
 inputfield.addEventListener('keyup',(event)=>{
     totalKeyPress++;
     let currentText = inputfield.value;
@@ -48,6 +48,8 @@ inputfield.addEventListener('keyup',(event)=>{
         wpm = words/speed*60;
         document.getElementById('wpminput').value =parseInt(wpm);
         document.getElementById('typoinput').value = error;
+        document.getElementById('accuracyinput').value = accuracy;
+        console.log(accuracy);
         clearInterval(updateWpm);
         myForm.submit();
     }
@@ -56,7 +58,7 @@ inputfield.addEventListener('keyup',(event)=>{
             error = error + 1;
     }
 
-    let accuracy = parseInt((totalKeyPress-error)/totalKeyPress*100);
+    accuracy = parseInt((totalKeyPress-error)/totalKeyPress*100);
     let accuracySpan = document.getElementById('accuracy');
     if(accuracySpan!=null){
         accuracySpan.textContent = accuracy+'%';
@@ -77,6 +79,10 @@ inputfield.addEventListener('keyup',(event)=>{
         if(giventext.slice(0,inputfield.value.length)==inputfield.value && inputfield.value.length<giventext.length){
             spanList[inputfield.value.length].className = "givenLetter bg-success text-white rounded"
         }
+        
+    }
+    for(let i = inputfield.value.length+1;i<giventext.length;i++){
+        spanList[i].className = "givenLetter";
     }
 
 

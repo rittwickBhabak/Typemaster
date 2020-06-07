@@ -24,6 +24,10 @@
         <li class="nav-item {% block activetutor %} {% endblock %}">
           <a class="nav-link" href="{{url_for('exercise')}}">Typing Tutor <span class="sr-only">(current)</span></a>
         </li>
+        {% else %}
+        <li class="nav-item active">
+          <a href="{{url_for('index')}}" class="nav-link">Home</a>
+        </li>
         {% endif %}
         <li class="nav-item {% block activetest %} {% endblock %}">
           <a class="nav-link" href="{{url_for('typetest')}}">Typing Test</a>

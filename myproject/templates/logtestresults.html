@@ -1,0 +1,29 @@
+{% extends "dashboardbase.html" %}
+{% block activetest %} active {% endblock %}
+{% block dashboarditems %}
+
+<div class="container my-4 mydiv" id="practice-div">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Sl. No.</th>
+                <th scope="col">Speed(WPM)</th>
+                <th scope="col">Accuracy</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in result %}
+            <tr>
+                <td>{{r[0]}}</td>
+                <td>{{r[1]}}</td>
+                <td>{{r[2]}}</td>
+            </tr>
+            {% endfor %}
+            
+
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}
