@@ -50,6 +50,7 @@ def analytics():
     testresults = TestResults.query.filter_by(user_id=user_id)
     result = []
     for ind,r in enumerate(testresults):
+        print(str(int(r.speed)*2)+','+str(int(r.accuracy)*2))
         result.append([ind+1,int(r.speed)*2,int(r.accuracy)*2])
     return render_template('analytics.html', result = result)
 
@@ -228,4 +229,4 @@ def method_not_allowed(e):
     return redirect(url_for('index'))
 
 if __name__ == "__main__":
-    app.run(port=9999)
+    app.run(port=9999,debug=True)

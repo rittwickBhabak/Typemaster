@@ -267,8 +267,8 @@ PracticeLine = [
     "Looks like I'm typing a bit faster now. Now it's a good time to take a certification test."
 
 ]
-# TestLines = ['this is text line 1', 'this is text line 2']
-TestLines = [
+
+estLines = [
     '''In parts of Alaska, it's illegal to feed alcohol to a moose. You're subject to fines and/or imprisonment for making "ugly faces" at dogs in Oklahoma. In Utah, birds have the right of way on all highways. Christmas was once illegal in England. In Turkey, in the sixteenth and seventeenth centuries, anyone caught drinking coffee was put to death. It is illegal to hunt camels in the state of Arizona.''',
     '''The first telephone exchange opened on January 28, 1878, in New Haven, Connecticut. In the late 30's, a man named Abe Pickens of Cleveland, Ohio, attempted to promote world peace by placing personal calls to various country leaders. He managed to contact Mussolini, Hirohito, Franco and Hitler (Hitler, who didn't understand English, transferred him to an aide). He spent $10,000 to "give peace a chance."''',
     '''It's impossible to sneeze with your eyes open. The expression "to get fired" comes from long, long ago. When clans wanted to get rid of their unwanted people without killing them used to burn their houses down. The word 'corr' actually means 'odd' in Irish. Los Angeles' full name is "El Pueblo de Nuestra Senora la Reina de los Angeles de Porciuncula". In English this means 'The City of Angels'.''',
@@ -324,3 +324,4 @@ TestLines = [
     '''The famous Citgo sign near Fenway Park in Boston is maintained not by Citgo, but by Boston's historical society. In the 1700's you could purchase insurance against going to hell, in London England. The Aztec Indians of Mexico believed turquoise would protect them from physical harm, and so warriors used these green and blue stones to decorate their battle shields. Black cats are considered lucky in England.''',
     '''The Eisenhower interstate system requires that one-mile in every five must be straight. These straight sections are usable as airstrips and in times of war or other emergencies. The water of Angel Falls (the World's highest) in Venezuela drops 3,212 feet (979 meters). They are 15 times higher than Niagara Falls. Theatres in Glendale, California can show horror films only on Monday, Tuesday, or Wednesday.'''
 ]
+TestLines = ['this is text line 1', 'this is text line 2']
